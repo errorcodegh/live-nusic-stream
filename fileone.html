@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJ Beats</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+
+    /* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0d0d0d;
+    background-color: #1f2833;
+    color: white;
+    line-height: 1.6;
+}
+
+#small,#list{display: none;}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1f2833;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    position: sticky !important;
+    top: 0px;
+    z-index: 999;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #00ffe5;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
+
+}
+
+.auto-type1{
+ font-family: monospace;
+ font-weight: lighter;
+ font-size: 1em;
+}
+
+
+nav {
+    display: flex;
+    gap: 2.5em;
+}
+
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+/* Genres Section (no glow) */
+.genres-section {
+  width: 90%;
+  margin: 0 auto;
+  padding: 50px 20px;
+  text-align: center;
+  background: #0d0d0d;
+   background-color: #1f2833;
+
+}
+
+.genres-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #00f0ff;
+
+}
+
+.genres-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.genre-card {
+  background: #1a1a1a;
+  border: 2px solid #00f0ff;
+  padding: 30px 20px;
+  border-radius: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #00f0ff;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9);
+
+}
+
+.genre-card:hover {
+  background: #00f0ff;
+  color: #0d0d0d;
+  transform: scale(1.05);
+  border-color: #00aaff;
+}
+
+
+
+.hero {
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0.8;
+}
+
+.hero h2 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.hero button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    background: #00ffe5;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.hero button:hover {
+    background: #00bfa5;
+}
+
+.player-section {
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+    padding: 50px;
+    text-align: center;
+    opacity: 0.8;
+}
+
+audio {
+    width: 80%;
+    margin: 20px 0;
+}
+
+.controls button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #333;
+    border: 1px solid #00ffe5;
+    color: #00ffe5;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background: #00ffe5;
+    color: #0d0d0d;
+}
+
+
+    .music-section {
+      padding: 50px 20px;
+    }
+
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .track {
+      background: #1f2833;
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 12px;
+      border: 2px solid #45a29e44;
+      transition: transform 0.3s;
+    }
+
+    .track:hover {
+      transform: scale(1.03);
+      border-color: #66fcf1;
+    }
+
+    .track h3 {
+      color: #66fcf1;
+      margin-bottom: 10px;
+    }
+
+    .track audio {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .track a {
+      display: inline-block;
+      background: #66fcf1;
+      color: #0b0c10;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+.contact-section {
+  padding: 4rem 2rem;
+  background-color: #1f2833;
+  text-align: center;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.contact-section h2 {
+  font-size: 2.5rem;
+  color: #66fcf1;
+  margin-bottom: 2rem;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8em;
+}
+
+.contact-card {
+  background: #0b0c10;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 300px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+}
+
+.contact-card h3 {
+  color: #66fcf1;
+  margin-bottom: 1rem;
+}
+
+.contact-card p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.contact-card i {
+  margin-right: 8px;
+  color: #45a29e;
+}
+
+
+.message-form {
+ display: block;
+ width: 90%;
+ margin: 0 auto;
+ justify-content: center;
+ text-align: center;
+  background-color: #1f2833;
+ line-height: 2em;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes lv {
+  from{opacity: 0.8;}
+  to{opacity: 0.1;}
+}
+
+.message-form h3{opacity: 0.8; animation: lv 2s infinite; }
+
+.message-form input,
+.message-form textarea {
+  width: 70%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #1f2833;
+  color: white;
+}
+
+.message-form button {
+  padding: 10px 20px;
+    background: #0d0d0d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.message-form button:hover {
+  background: #45a29e;
+}
+
+
+footer {
+    background: #0d0d0d;
+    text-align: center;
+    padding: 15px;
+    font-size: 0.8em;
+    border-top: 1px solid #333;
+    opacity: 0.8;
+}
+
+
+@media (max-width: 768px) {
+
+  #small{
+    width: 80%;
+    margin: 0 auto;
+    height: auto;
+    background-color: #1f2833;
+    z-index: 999;
+    line-height: 4em;
+    display: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    
+  }
+
+  #small a{
+  line-height: 2em;
+  text-decoration: none;
+  padding: 3em;
+  color: white;
+  opacity: 0.8;
+  }
+
+  #closeBtn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 2.5em;
+  padding: 8px 12px;
+  cursor: pointer;
+  float: right;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+
+}
+
+
+  header {
+    display: flex; 
+    position: sticky !important;
+    top: 0px;
+    z-index: 999;
+   }
+
+
+  #big {display: none;}
+
+  #list {
+    display: block;
+    font-size: 1.2em;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      }
+
+  .hero h2 {
+    font-size: 2em;
+  }
+
+  .hero button {
+    width: 80%;
+    font-size: 1em;
+  }
+
+  .genres-container,
+  .music-grid,
+  .contact-container {
+    grid-template-columns: 1fr !important;
+    gap: 15px;
+  }
+
+  .player-section,
+  .music-section,
+  .contact-section {
+    padding: 30px 10px;
+  }
+
+  .track {
+    width: 90%;
+    margin: 0 auto;
+    padding: 15px;
+  }
+
+  .track h3 {
+    font-size: 1.2em;
+  }
+
+  .controls button {
+    width: 100%;
+    margin: 8px 0;
+  }
+
+  audio {
+    width: 100%;
+  }
+
+  .contact-card {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .genres-section h2,
+  .contact-section h2 {
+    font-size: 2em;
+  }
+
+  header h1 {
+    font-size: 1.5em;
+  }
+}
+
+
+
+
+</style>
+
+</head>
+<body>
+    <header>
+        <h1>🎧 DJ Beats</h1>
+        <i class="fas fa-list" id="list" onclick="showup()"></i>
+       <nav id="big">
+  <a href="fileone.html"> <i class="fas fa-home"></i>  Home</a>
+  <a href="#player" class="play"> <i class="fas fa-music"></i>  Player</a>
+  <a href="#home" class="play"> <i class="fas fa-music"></i>  Create</a>
+  <a href="#tracks" class="play"> <i class="fas fa-music"></i>  Mix-Tracks</a>
+  <a href="#contact" class="play"> <i class="fas fa-envelope"></i>  Contact</a>
+</nav>
+
+    </header>
+
+
+    <div id="small">
+        <button id="closeBtn" onclick="document.getElementById('small').style.display='none'">
+    &times;
+  </button>
+  
+  <a href="fileone.html"> <i class="fas fa-home"></i>  Home</a><br>
+  <a href="#player" class="play"> <i class="fas fa-music"></i>  Player</a><br>
+  <a href="#home" class="play"> <i class="fas fa-music"></i>  Create</a><br>
+  <a href="#tracks" class="play"> <i class="fas fa-music"></i>  Mix-Tracks</a><br>
+  <a href="#contact" class="play"> <i class="fas fa-envelope"></i>  Contact</a><br>
+
+ </div>
+
+
+    <section id="genres" class="genres-section">
+  <h2><i class="fas fa-music" style="color: white;"></i> Explore Genres</h2>
+  <div class="genres-container">
+    <div class="genre-card">Hip-Hop Mix</div>
+    <div class="genre-card">Highlife Mix</div>
+    <div class="genre-card">Afropop Mix</div>
+    <div class="genre-card">Afro-Dancehall</div>
+    <div class="genre-card">Party Mix</div>
+    <div class="genre-card">House Vibes</div>
+    <div class="genre-card">Trap Beats</div>
+    <div class="genre-card">Reggaeton Fiesta</div>
+  </div>
+</section>
+
+
+    <section id="home" class="hero">
+        <h2>Mix. Play. Create.</h2>
+        <h1><span class="auto-type1"></span></h1><br>
+        <button onclick="scrollToPlayer()">Start Mixing</button>
+    </section><br><br>
+
+    <section id="player" class="player-section">
+        <h2>Live Music Player</h2>
+        <audio id="audio" controls>
+            <source src="rnb_mix.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+
+        <div class="controls">
+            <button onclick="playAudio()">▶ Play</button>
+            <button onclick="pauseAudio()">⏸ Pause</button>
+        </div>
+    </section><br><br>
+
+    <section class="music-section" id="listen">
+    <h2 style="text-align:center; margin-bottom:30px; opacity: 0.8;">Listen to Hot Tracks</h2>
+    <div class="music-grid">
+      <div class="track">
+        <h3>Hip-Hop Mix</h3>
+        <audio controls>
+          <source src="music/hiphop.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <a href="music/hiphop.mp3" download>Download</a>
+      </div>
+
+      <div class="track" id="tracks">
+        <h3>Afro-Dancehall</h3>
+        <audio controls>
+          <source src="music/afro-dancehall.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <a href="music/afro-dancehall.mp3" download>Download</a>
+      </div>
+
+      <div class="track">
+        <h3>Party Mix</h3>
+        <audio controls>
+          <source src="music/party-mix.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <a href="music/party-mix.mp3" download>Download</a>
+      </div>
+
+       <div class="track">
+        <h3>trap Beats</h3>
+        <audio controls>
+          <source src="music/party-mix.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <a href="music/party-mix.mp3" download>Download</a>
+      </div>
+
+       <div class="track">
+        <h3>House Vibes</h3>
+        <audio controls>
+          <source src="music/party-mix.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <a href="music/party-mix.mp3" download>Download</a>
+      </div>
+
+       <div class="track">
+        <h3>Reggaeton Mix</h3>
+        <audio controls>
+          <source src="music/party-mix.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <a href="music/party-mix.mp3" download>Download</a>
+      </div>
+
+    </div>
+  </section><br>
+
+
+  <div class="message-form"><br>
+  <h3>Leave a Message</h3><br>
+  <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="email" name="email" placeholder="Your Email" required><br>
+    <textarea name="message" rows="5" placeholder="Your Message" required></textarea><br>
+    <button type="submit">Send Message</button>
+     <br><br>
+  </form>
+</div><br><br>
+
+
+   <section id="contact" class="contact-section">
+  <h2>Contact Us</h2>
+  <div class="contact-container">
+    <div class="contact-card">
+      <h3>DJ Mantele</h3>
+      <p><i class="fas fa-envelope"></i> mantele2008@gmail.com</p>
+      <p><i class="fab fa-instagram"></i> @mentagious Musics</p>
+       <p><i class="fas fa-phone"></i> +233 0543444029</p>
+    </div>
+
+    <div class="contact-card">
+      <h3>Developed By</h3>
+      <p><i class="fas fa-envelope"></i> rans76boat@gmail.com</p>
+      <p><i class="fab fa-instagram"></i> @errorcode solved</p>
+       <p><i class="fas fa-phone"></i> +233 0543853263</p>
+    </div>
+  </div>
+</section>
+
+
+    </section><br>
+
+    <footer>
+        <p>© 2025 DJ Beats. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+
+    function playAudio() {
+    var audio = document.getElementById('audio');
+    audio.play();
+}
+
+function pauseAudio() {
+    var audio = document.getElementById('audio');
+    audio.pause();
+}
+
+function scrollToPlayer() {
+    document.getElementById('player').scrollIntoView({ behavior: 'smooth' });
+}
+
+function changeEffect() {
+    const body = document.querySelector('body');
+    body.style.background = 'linear-gradient(135deg, #00ffe5, #8e2de2)';
+}
+
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+
+<script>
+      var typed = new Typed('.auto-type1', {
+        
+        strings: ['Create','Your Own Mix', 'With Just', 'A Click'],
+        typeSpeed: 60,
+        backSpeed: 10,
+        loop: true,
+      });
+
+
+    </script>
+
+    <script>
+
+      function showup(){
+        document.getElementById("small").style.display="block";
+      }
+
+
+    </script>
+
+</body>
+</html>
